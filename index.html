@@ -1,0 +1,107 @@
+<!--    
+        Autor: Bruno Ferreira Alves
+        Código comentado para facilitar o entendimento.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- Fonte do Título -->
+        <link rel="stylesheet" href="assets/font.css">
+
+        <!-- Carregamento do Bootstrap e BootstrapVue CSS -->
+        <link type="text/css" rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+        <!-- Load Vue seguido por BootstrapVue -->
+        <script src="vue@latest/dist/vue.min.js"></script>
+        <script src="bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+        <!-- OrgChart css e js -->
+        <link rel="stylesheet" href="OrgChart/OrgChart.css">
+        <script src="OrgChart/OrgChart.js"></script>  
+
+        <meta charset="UTF-8"/>
+
+    <title>Organograma EsAO</title>
+    </head>
+
+        <body>
+        <!--- Início do Menu -->
+            <div class="pos-f-t">
+                    <div class="collapse" id="navbarToggleExternalContent">
+                        <div class="bg-dark p-4">
+                            <h4 class="text-white h4" style="text-align: center;">ORGANOGRAMA - EsAO<img alt="Logo Escola de Aperfeiçoamento de Oficiais" src="images/logo.png" style="width: 30px;" /></h4>
+                                
+                                    <!--- <a class="btn btn-primary" href="http://10.1.113.250" role="button">
+                                    Página Inicial
+                                    </a> 
+                                        <span class="text-muted">Em desenvolvimento.</span> -->
+                        </div>
+                    </div>
+                <nav class="navbar navbar-dark ">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+        <!--- Fim do Menu -->
+        <!-- Conteúdo -->
+
+        <style>
+              .myNode {
+        border: no;
+              }
+              .redNode {
+                color: red;
+              }
+              .greenNode {
+                color: green;
+              }
+              .blueNode {
+                color: blue;
+              }
+            </style>
+
+            <div id="app">
+                <org-chart :org-chart_data="myOrgData">
+                </org-chart>
+            </div>
+
+        <script>
+              const myNode = { html: "<div><img alt='General de Brigada Basto' src='images/gen_basto.png' /></div>" };
+              myNode.classes = "myNode";
+              const redNode = { ...myNode };
+              redNode.classes += " redNode";
+              const greenNode = { ...myNode };
+              greenNode.classes += " greenNode";
+              const blueNode = { ...myNode };
+              blueNode.classes += " blueNode";
+              const myOrgData = {
+                root: {
+                  node: redNode,
+                  branches: {
+                    vertical_breakpoint: "md",
+                    items: [{ node: greenNode }, { node: blueNode }]
+                  }
+                }
+              };
+              new Vue({
+                el: "#app",
+                data: { myOrgData }
+              });
+        </script>
+            <div class="footer">
+                <br>
+                    <h6 style="text-align: center"; font-family="Nexa">DESENVOLVIDO POR: <strong>SD BRUNO</strong> FERREIRA <strong>ALVES</strong>
+                    </h6>
+                <br>
+            </div>
+        </body>
+
+    <script src="jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <script src="npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>

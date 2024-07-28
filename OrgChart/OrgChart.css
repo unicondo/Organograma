@@ -1,0 +1,534 @@
+/*
+Licensed under MIT (https://github.com/jasper2virtual/bootstrap-vue-responsive-organization-chart/blob/master/LICENSE)
+*/
+/* tree form */
+
+.orgChartDesktopWrapper{
+    overflow: hidden;
+    justify-content:center;
+}
+
+.orgChartDesktop {
+    display:flex;
+    padding: 0;
+    margin: 0;
+    transform-origin:top center;
+    --connector-color:unset;
+}
+
+
+.orgChartDesktopBranch {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.orgChartDesktopBranches {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.orgChartDesktopNode {
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align: center;
+    padding: 16px;
+    margin: 20px 5px;
+    border-radius: 10px;
+    align-self: center;
+    position: relative;
+    color: black;
+}
+
+/*connectors*/
+
+.orgChartDesktopBranch::before,
+.orgChartDesktopNode::after,
+.orgChartDesktopNode::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 0px solid;
+    border-color: var(--connector-color);
+}
+
+
+.orgChartDesktopBranch:not(:only-child)::before {
+    border-top-width: 2px;
+    width: 100%;
+    height: 20px;
+    top: 0px;
+}
+
+.orgChartDesktopBranch:first-child::before {
+    width: calc(50% + 1px);
+    right: 0;
+    border-left-width: 2px;
+    border-top-left-radius: 7px;
+}
+
+.orgChartDesktopBranch:last-child::before {
+    width: calc(50% + 1px);
+    border-right-width: 2px;
+    border-top-right-radius: 7px;
+}
+
+.orgChartDesktopNode::after,
+.orgChartDesktopNode::before {
+    border-left-width: 2px;
+    width: 2px;
+    height: 20px;
+    left: calc(50% - 1px);
+}
+
+.orgChartDesktopNode::before {
+    top: -20px;
+}
+
+.orgChartDesktopNode::after {
+    bottom: -20px;
+}
+
+.orgChartDesktopBranch:first-child:not(:only-child)>.orgChartDesktopNode::before,
+.orgChartDesktopBranch:last-child:not(:only-child)>.orgChartDesktopNode::before {
+    border-left-width: 0px;
+}
+
+.orgChartDesktopLeaf>.orgChartDesktopNode::after,
+.orgChartDesktopRoot>.orgChartDesktopNode::before {
+    display: none;
+}
+
+
+/*vertical nodes*/
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 5px;
+    position: relative;
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode {
+    margin: 10px 0 0 10px;
+    width: calc(100% - 8px);
+    min-height:auto;
+}    
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches{
+    align-items: stretch;
+}
+
+/*vertical connectors*/
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 10px;
+    height: 10px;
+    width: calc(50% - 19px);
+    border-top: 2px solid;
+    border-top-color: var(--connector-color);
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopNode::after {
+    border-width: 0 2px 2px 0;
+    border-bottom-right-radius: 7px;
+    width: 10px;
+    left: auto;
+    right: calc(50% - 1px);
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch::before {
+    border-width: 0 0 0 2px;
+    left: 0px;
+    height: 100%;
+    width: 10px;
+    border-radius: 0;
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:first-child::before {
+    top: -2px;
+    height: calc(100% + 2px);
+    border-top-width: 2px;
+    border-top-left-radius: 7px;
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child::before {
+    height: calc(50% + 6px);
+    border-bottom-width: 2px;
+    border-bottom-left-radius: 7px;
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode::before {
+    height: 2px;
+    width: 8px;
+    top: calc(50% - 1px);
+    left: -8px;
+    border-width: 2px 0 0 0;
+}
+
+.orgChartDesktop-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child>.orgChartDesktopNode::before {
+    display: none;
+}
+
+
+
+@media (max-width:575px) {
+    /*vertical nodes*/
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 5px;
+        position: relative;
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode {
+        margin: 10px 0 0 10px;
+        width: calc(100% - 8px);
+        min-height:auto;
+    }
+    
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches{
+        align-items: stretch;
+    }
+
+    /*vertical connectors*/
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches::before {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 10px;
+        height: 10px;
+        width: calc(50% - 19px);
+        border-top: 2px solid;
+        border-top-color: var(--connector-color);
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopNode::after {
+        border-width: 0 2px 2px 0;
+        border-bottom-right-radius: 7px;
+        width: 10px;
+        left: auto;
+        right: calc(50% - 1px);
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch::before {
+        border-width: 0 0 0 2px;
+        left: 0px;
+        height: 100%;
+        width: 10px;
+        border-radius: 0;
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:first-child::before {
+        top: -2px;
+        height: calc(100% + 2px);
+        border-top-width: 2px;
+        border-top-left-radius: 7px;
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child::before {
+        height: calc(50% + 6px);
+        border-bottom-width: 2px;
+        border-bottom-left-radius: 7px;
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode::before {
+        height: 2px;
+        width: 8px;
+        top: calc(50% - 1px);
+        left: -8px;
+        border-width: 2px 0 0 0;
+    }
+
+    .orgChartDesktop-sm-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child>.orgChartDesktopNode::before {
+        display: none;
+    }
+
+}
+
+
+@media (max-width:767px) {
+    /*vertical nodes*/
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 5px;
+        position: relative;
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode {
+        margin: 10px 0 0 10px;
+        width: calc(100% - 8px);
+        min-height:auto;
+    }
+    
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches{
+        align-items: stretch;
+    }    
+
+    /*vertical connectors*/
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches::before {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 10px;
+        height: 10px;
+        width: calc(50% - 19px);
+        border-top: 2px solid;
+        border-top-color: var(--connector-color);
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopNode::after {
+        border-width: 0 2px 2px 0;
+        border-bottom-right-radius: 7px;
+        width: 10px;
+        left: auto;
+        right: calc(50% - 1px);
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch::before {
+        border-width: 0 0 0 2px;
+        left: 0px;
+        height: 100%;
+        width: 10px;
+        border-radius: 0;
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:first-child::before {
+        top: -2px;
+        height: calc(100% + 2px);
+        border-top-width: 2px;
+        border-top-left-radius: 7px;
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child::before {
+        height: calc(50% + 6px);
+        border-bottom-width: 2px;
+        border-bottom-left-radius: 7px;
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode::before {
+        height: 2px;
+        width: 8px;
+        top: calc(50% - 1px);
+        left: -8px;
+        border-width: 2px 0 0 0;
+    }
+
+    .orgChartDesktop-md-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child>.orgChartDesktopNode::before {
+        display: none;
+    }
+
+}
+
+
+@media (max-width:991px) {
+    /*vertical nodes*/
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 5px;
+        position: relative;
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode {
+        margin: 10px 0 0 10px;
+        width: calc(100% - 8px);
+        min-height:auto;
+    }
+    
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches{
+        align-items: stretch;
+    }
+
+    /*vertical connectors*/
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches::before {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 10px;
+        height: 10px;
+        width: calc(50% - 19px);
+        border-top: 2px solid;
+        border-top-color: var(--connector-color);
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopNode::after {
+        border-width: 0 2px 2px 0;
+        border-bottom-right-radius: 7px;
+        width: 10px;
+        left: auto;
+        right: calc(50% - 1px);
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch::before {
+        border-width: 0 0 0 2px;
+        left: 0px;
+        height: 100%;
+        width: 10px;
+        border-radius: 0;
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:first-child::before {
+        top: -2px;
+        height: calc(100% + 2px);
+        border-top-width: 2px;
+        border-top-left-radius: 7px;
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child::before {
+        height: calc(50% + 6px);
+        border-bottom-width: 2px;
+        border-bottom-left-radius: 7px;
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode::before {
+        height: 2px;
+        width: 8px;
+        top: calc(50% - 1px);
+        left: -8px;
+        border-width: 2px 0 0 0;
+    }
+
+    .orgChartDesktop-lg-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child>.orgChartDesktopNode::before {
+        display: none;
+    }
+
+}
+
+
+@media (max-width:1199px) {
+    /*vertical nodes*/
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 5px;
+        position: relative;
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode {
+        margin: 10px 0 0 10px;
+        width: calc(100% - 8px);
+        min-height:auto;
+    }
+    
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches{
+        align-items: stretch;
+    }    
+    
+
+    /*vertical connectors*/
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches::before {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 10px;
+        height: 10px;
+        width: calc(50% - 19px);
+        border-top: 2px solid;
+        border-top-color: var(--connector-color);
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopNode::after {
+        border-width: 0 2px 2px 0;
+        border-bottom-right-radius: 7px;
+        width: 10px;
+        left: auto;
+        right: calc(50% - 1px);
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch::before {
+        border-width: 0 0 0 2px;
+        left: 0px;
+        height: 100%;
+        width: 10px;
+        border-radius: 0;
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:first-child::before {
+        top: -2px;
+        height: calc(100% + 2px);
+        border-top-width: 2px;
+        border-top-left-radius: 7px;
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child::before {
+        height: calc(50% + 6px);
+        border-bottom-width: 2px;
+        border-bottom-left-radius: 7px;
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch>.orgChartDesktopNode::before {
+        height: 2px;
+        width: 8px;
+        top: calc(50% - 1px);
+        left: -8px;
+        border-width: 2px 0 0 0;
+    }
+
+    .orgChartDesktop-xl-vBranch>.orgChartDesktopBranches>.orgChartDesktopBranch:last-child>.orgChartDesktopNode::before {
+        display: none;
+    }
+
+}
+
+
+
+.orgChartDesktop .nobody_line{
+    padding:0px;
+    width:1px!important;
+    min-width:0px!important;
+    border-left:1px solid;
+    border-right:1px solid;
+    border-left-color: var(--connector-color);
+    border-right-color: var(--connector-color);
+}
+
+
+/* collapsed boxes form */
+
+.orgChartMobile .collapsed > div > .when-opened,
+.orgChartMobile :not(.collapsed) > div > .when-closed {
+    display: none;
+}
+
+.orgChartMobile{
+    border:8px solid green;
+}
+
+.orgChartMobile .branches_level1{
+    border:8px solid red;
+}
+
+.orgChartMobile .branches_level2{
+    border:4px solid orange;
+}
+
+.orgChartMobile .branches_level3{
+    border:2px solid gold;
+}
+
+.orgChartMobile .node_level1{
+    padding-left:1em!important;
+}
+
+.orgChartMobile .node_level2{
+    padding-left:2em!important;
+}
+
+.orgChartMobile .node_level3{
+    padding-left:3em!important;
+}
+

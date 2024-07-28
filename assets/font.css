@@ -1,0 +1,25 @@
+body {
+  background-image: linear-gradient(to bottom right, #112114, #3a603e);
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-image: linear-gradient(to top, #0a0a0aa1, #0a0a0aa1);
+  color: white;
+  text-align: center;
+}
+
+@font-face {
+            font-family: Nexa;
+            src: url(font/NexaBold.ttf)
+        }
+
+        h1 {
+            font-family: Nexa;
+            color: #fff;
+        }
+    
